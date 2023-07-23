@@ -1,0 +1,31 @@
+-- src/main/sqldelight/com/example/sqldelight/hockey/data/Player.sq
+
+selectAll:
+SELECT *
+FROM player;
+
+selectByPlayerNumber:
+SELECT *
+FROM player
+WHERE player.player_number = ?;
+
+insert:
+INSERT INTO player(player_number, full_name)
+VALUES (?, ?);
+
+insertFullPlayerObject:
+INSERT INTO player(player_number, full_name)
+VALUES ?;
+
+CREATE TABLE player (
+  player_number INTEGER PRIMARY KEY NOT NULL ON CONFLICT REPLACE,
+  full_name TEXT NOT NULL
+);
+
+CREATE INDEX player_full_name ON player(full_name);
+
+INSERT INTO player (player_number, full_name)
+VALUES (15, 'Ryan Getzlaf');
+
+clearPlayers:
+DELETE FROM player;
